@@ -1,0 +1,230 @@
+================================================================================
+                    MATCHMAKING10 API TESTING GUIDE
+================================================================================
+
+🚀 QUICK API TESTING WITH CURL COMMANDS
+================================================================================
+
+PREREQUISITES:
+- Backend running on http://localhost:5000
+- MongoDB connected
+- Postman or curl available
+
+================================================================================
+1. TEST BACKEND CONNECTION
+================================================================================
+
+```bash
+# Test if backend is running
+curl http://localhost:5000/api/auth/context
+
+# Expected: {"error":"Access token required"}
+# This means backend is working!
+```
+
+================================================================================
+2. TEST USER REGISTRATION
+================================================================================
+
+```bash
+# Register a new user
+curl -X POST http://localhost:5000/api/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Test User",
+    "email": "test@example.com",
+    "password": "123456",
+    "role": "brand",
+    "phoneNumber": "+923001234567",
+    "location": "Karachi, Pakistan",
+    "age": 25,
+    "gender": "Male"
+  }'
+
+# Expected: {"success": true, "message": "User registered successfully"}
+```
+
+================================================================================
+3. TEST USER LOGIN
+================================================================================
+
+```bash
+# Login with registered user
+curl -X POST http://localhost:5000/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "test@example.com",
+    "password": "123456"
+  }'
+
+# Expected: {"success": true, "user": {...}, "accessToken": "...", "refreshToken": "..."}
+# SAVE THE ACCESS TOKEN FOR NEXT TESTS!
+```
+
+================================================================================
+4. TEST PROTECTED ENDPOINTS
+================================================================================
+
+```bash
+# Replace YOUR_ACCESS_TOKEN with the token from login
+TOKEN="YOUR_ACCESS_TOKEN"
+
+# Get user profile
+curl -X GET http://localhost:5000/api/user/profile \
+  -H "Authorization: Bearer $TOKEN"
+
+# Get profiles by role
+curl -X GET "http://localhost:5000/api/users?role=influencer" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Get user favorites
+curl -X GET http://localhost:5000/api/favorites \
+  -H "Authorization: Bearer $TOKEN"
+
+# Get user matches
+curl -X GET http://localhost:5000/api/match \
+  -H "Authorization: Bearer $TOKEN"
+```
+
+================================================================================
+5. TEST FAVORITE OPERATIONS
+================================================================================
+
+```bash
+# Add a favorite (replace USER_ID with actual user ID)
+curl -X POST http://localhost:5000/api/favorites \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"favoriteUserId": "USER_ID_HERE"}'
+
+# Remove a favorite
+curl -X DELETE http://localhost:5000/api/favorites \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"favoriteUserId": "USER_ID_HERE"}'
+```
+
+================================================================================
+6. TEST LOGOUT
+================================================================================
+
+```bash
+# Logout user
+curl -X POST http://localhost:5000/api/auth/logout \
+  -H "Authorization: Bearer $TOKEN"
+
+# Expected: {"success": true, "message": "Logged out successfully"}
+```
+
+================================================================================
+7. TEST WITH POSTMAN (RECOMMENDED)
+================================================================================
+
+1. Open Postman
+2. Create new collection: "MatchMaking10 API"
+3. Set base URL: http://localhost:5000/api
+4. Create requests for each endpoint
+5. Use environment variables for tokens
+
+POSTMAN ENVIRONMENT VARIABLES:
+- base_url: http://localhost:5000/api
+- access_token: [from login response]
+- refresh_token: [from login response]
+
+================================================================================
+8. COMMON TESTING SCENARIOS
+================================================================================
+
+SCENARIO 1: Complete User Journey
+1. Register new user
+2. Login with credentials
+3. Get user profile
+4. Browse other profiles
+5. Add/remove favorites
+6. Logout
+
+SCENARIO 2: Error Handling
+1. Try login with wrong password
+2. Try access protected endpoint without token
+3. Try register with invalid data
+4. Test with expired token
+
+SCENARIO 3: Data Validation
+1. Register with invalid email format
+2. Register with short password
+3. Register with invalid phone number
+4. Test age validation (under 18, over 100)
+
+================================================================================
+9. EXPECTED RESPONSES
+================================================================================
+
+SUCCESS RESPONSES:
+- Registration: {"success": true, "message": "..."}
+- Login: {"success": true, "user": {...}, "tokens": {...}}
+- Profile: {"success": true, "user": {...}}
+- Favorites: {"success": true, "favorites": [...]}
+
+ERROR RESPONSES:
+- Validation: {"error": "Validation message"}
+- Authentication: {"error": "Access token required"}
+- Not Found: {"error": "User not found"}
+- Server Error: {"error": "Internal server error"}
+
+================================================================================
+10. TROUBLESHOOTING COMMON ISSUES
+================================================================================
+
+ISSUE: "Network request failed"
+SOLUTION: Check if backend is running on port 5000
+
+ISSUE: "Access token required"
+SOLUTION: Include Authorization header with Bearer token
+
+ISSUE: "Validation failed"
+SOLUTION: Check request body format and required fields
+
+ISSUE: "User not found"
+SOLUTION: Verify user exists in database
+
+ISSUE: "CORS error"
+SOLUTION: Check backend CORS configuration
+
+================================================================================
+✅ TESTING CHECKLIST
+================================================================================
+
+□ Backend connection test passed
+□ User registration working
+□ User login working
+□ Access token received
+□ Protected endpoints accessible
+□ Profile data retrieved
+□ Favorites operations working
+□ Logout successful
+□ Error handling working
+□ Data validation working
+
+================================================================================
+🎯 NEXT STEPS AFTER TESTING
+================================================================================
+
+1. If all tests pass: App is ready for production
+2. If some tests fail: Check error messages and fix issues
+3. Test on actual devices: Install APK and test real usage
+4. Performance testing: Test with multiple users
+5. Security testing: Verify token expiration and validation
+
+================================================================================
+📞 NEED HELP?
+================================================================================
+
+Common debugging steps:
+1. Check backend console logs
+2. Verify MongoDB connection
+3. Test API endpoints individually
+4. Check network security configuration
+5. Verify environment variables
+
+Remember: The API must be working before the mobile app can function properly!
+================================================================================
