@@ -1,0 +1,4 @@
+/Users/noraiz/Desktop/react-native-projects/MatchMaking/android/app/.cxx/Debug/2z5q233l/arm64-v8a/CMakeFiles/_CMakeLTOTest-CXX/bin/CMakeFiles/foo.dir
+/Users/noraiz/Desktop/react-native-projects/MatchMaking/android/app/.cxx/Debug/2z5q233l/arm64-v8a/CMakeFiles/_CMakeLTOTest-CXX/bin/CMakeFiles/boo.dir
+/Users/noraiz/Desktop/react-native-projects/MatchMaking/android/app/.cxx/Debug/2z5q233l/arm64-v8a/CMakeFiles/_CMakeLTOTest-CXX/bin/CMakeFiles/edit_cache.dir
+/Users/noraiz/Desktop/react-native-projects/MatchMaking/android/app/.cxx/Debug/2z5q233l/arm64-v8a/CMakeFiles/_CMakeLTOTest-CXX/bin/CMakeFiles/rebuild_cache.dir

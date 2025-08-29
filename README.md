@@ -1,163 +1,118 @@
-# MatchMaking10 🚀
+# 🚀 MatchMaking - Full Stack Application
 
-A React Native mobile application for business partner matching between brands and influencers.
+A complete matchmaking platform built with React Native (frontend) and Node.js/Express/MongoDB (backend).
 
-## 📱 Features
+## 📁 Project Structure
 
-- **User Authentication**: Secure login/signup with JWT tokens
-- **Profile Management**: Complete user profiles with photos
-- **Smart Matching**: Swipe-based matching system
-- **Real-time Chat**: In-app messaging for matched users
-- **Role-based System**: Support for both brands and influencers
-- **Cross-platform**: Works on Android devices
-
-## 🛠️ Tech Stack
-
-- **Frontend**: React Native
-- **State Management**: Redux Toolkit
-- **Navigation**: React Navigation
-- **Authentication**: JWT with refresh tokens
-- **Storage**: AsyncStorage for local data
-- **UI Components**: Custom components with LinearGradient
-- **Gesture Handling**: React Native Gesture Handler
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js (v16 or higher)
-- React Native CLI
-- Android Studio with SDK
-- Java Development Kit (JDK)
-- Gradle
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone [repository-url]
-   cd MatchMaking
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Android setup**
-   ```bash
-   cd android
-   ./gradlew clean
-   cd ..
-   ```
-
-4. **Run the app**
-   ```bash
-   npx react-native run-android
-   ```
-
-### Building APK
-
-```bash
-cd android
-./gradlew assembleRelease
+```
+MatchMaking/
+├── frontend/          # React Native mobile application
+├── backend/           # Node.js/Express API server
+└── docs/             # Project documentation
 ```
 
-APK will be generated at: `android/app/build/outputs/apk/release/app-release.apk`
+## 🎯 Features
 
-## 🌐 API Configuration
+### Frontend (React Native)
+- User authentication (login/signup)
+- Profile management
+- Favorites and matching system
+- Real-time chat functionality
+- Role-based access (brand/influencer)
 
-The app requires a backend server running on port 5000. For development:
+### Backend (Node.js/Express)
+- RESTful API endpoints
+- JWT authentication with refresh tokens
+- MongoDB database integration
+- File upload capabilities
+- Email verification system
+- Real-time socket connections
 
-- **Local**: `http://localhost:5000/api`
-- **Network**: `http://[your-ip]:5000/api`
-- **Production**: Update `src/services/api.js` with your backend URL
+## 🚀 Quick Start
 
-## 📱 App Screens
+### Prerequisites
+- Node.js (v16 or higher)
+- MongoDB
+- React Native development environment
+- iOS Simulator or Android Emulator
 
-1. **LoginScreen**: User authentication
-2. **SignupScreen**: User registration with profile creation
-3. **HomeScreen**: Profile swiping and matching
-4. **MatchesScreen**: View matched users
-5. **ChatScreen**: Messaging interface
+### Backend Setup
+```bash
+cd backend
+npm install
+cp .env.example .env  # Configure your environment variables
+npm start
+```
 
-## 🎯 User Roles
+### Frontend Setup
+```bash
+cd frontend
+npm install
+npx react-native run-ios     # For iOS
+npx react-native run-android # For Android
+```
 
-- **Brand**: Businesses looking for influencer partnerships
-- **Influencer**: Content creators seeking brand collaborations
+## 🔧 Configuration
 
-## 🔐 Security Features
+### Backend Environment Variables
+Create a `.env` file in the `backend/` directory:
+```env
+PORT=5000
+DB_URL=mongodb://localhost:27017/match-making-db
+JWT_SECRET=your_super_secret_jwt_key_here
+JWT_EXPIRES_IN=7d
+SESSION_SECRET=your_session_secret_here
+PUBLIC_PICS=public/uploads
+FRONTEND_URL=http://localhost:3000
+```
 
-- JWT token-based authentication
-- Secure password storage
-- Input validation and sanitization
-- Network security configuration for Android
+### Frontend Configuration
+Update the API URL in `frontend/src/config/api.js` to point to your backend server.
 
-## 📊 State Management
+## 📱 API Endpoints
 
-- **Redux Toolkit** for global state
-- **Slices**: profiles, favorites, matches
-- **Async thunks** for API calls
-- **Persistent storage** with redux-persist
+- `POST /api/auth/register` - User registration
+- `POST /api/auth/login` - User login
+- `GET /api/users/profile` - Get user profile
+- `PUT /api/users/profile` - Update user profile
+- `POST /api/favorites` - Add to favorites
+- `GET /api/matches` - Get user matches
 
-## 🎨 UI/UX Features
+## 🛠️ Development
 
-- **Modern Design**: Clean, intuitive interface
-- **Gesture Controls**: Swipe-based interactions
-- **Responsive Layout**: Adapts to different screen sizes
-- **Loading States**: Smooth user experience
-- **Error Handling**: User-friendly error messages
+### Backend Development
+```bash
+cd backend
+npm run dev  # Development mode with nodemon
+```
 
-## 🚀 Deployment
+### Frontend Development
+```bash
+cd frontend
+npx react-native start  # Start Metro bundler
+```
 
-### Development
-- Run with Metro bundler
-- Connect device via USB debugging
-- Use localhost backend
+## 📚 Documentation
 
-### Production
-- Build release APK
-- Deploy backend to cloud server
-- Update API configuration
-- Test on multiple devices
+Detailed documentation is available in the `docs/` folder:
+- `BACKEND_INTEGRATION.md` - Backend setup and integration guide
+- `API_TESTING_GUIDE.md` - API testing instructions
+- `CONSTRUCTION_GUIDE.txt` - Development construction guide
+- `REDUX_IMPLEMENTATION.md` - State management implementation
+- `CLEAN_SUMMARY.md` - Project cleanup summary
 
-## 📋 Requirements
+## 🤝 Contributing
 
-- Android 6.0 (API level 23) or higher
-- Internet connection for API calls
-- Camera permission for profile photos
-- Storage permission for image uploads
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-1. **Network request failed**
-   - Check backend is running
-   - Verify API URL configuration
-   - Check network security settings
-
-2. **Build errors**
-   - Clean project: `./gradlew clean`
-   - Reset Metro cache: `npx react-native start --reset-cache`
-
-3. **Device connection**
-   - Enable USB debugging
-   - Run `adb devices` to verify connection
-
-## 📞 Support
-
-For technical support:
-- Check console logs for error messages
-- Verify environment configuration
-- Test API endpoints individually
-- Review network security settings
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
 
 ## 📄 License
 
-This project is proprietary software. All rights reserved.
+This project is licensed under the MIT License.
 
----
+## 🆘 Support
 
-**Built with ❤️ using React Native**
-# MatchMakingApp
+For support and questions, please check the documentation in the `docs/` folder or create an issue in the repository.
