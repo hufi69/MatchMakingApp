@@ -7,8 +7,7 @@ A complete matchmaking platform built with React Native (frontend) and Node.js/E
 ```
 MatchMaking/
 ├── frontend/          # React Native mobile application
-├── backend/           # Node.js/Express API server
-└── docs/             # Project documentation
+└── backend/           # Node.js/Express API server
 ```
 
 ## 🎯 Features
@@ -92,15 +91,6 @@ cd frontend
 npx react-native start  # Start Metro bundler
 ```
 
-## 📚 Documentation
-
-Detailed documentation is available in the `docs/` folder:
-- `BACKEND_INTEGRATION.md` - Backend setup and integration guide
-- `API_TESTING_GUIDE.md` - API testing instructions
-- `CONSTRUCTION_GUIDE.txt` - Development construction guide
-- `REDUX_IMPLEMENTATION.md` - State management implementation
-- `CLEAN_SUMMARY.md` - Project cleanup summary
-
 ## 🤝 Contributing
 
 1. Fork the repository
@@ -115,4 +105,4 @@ This project is licensed under the MIT License.
 
 ## 🆘 Support
 
-For support and questions, please check the documentation in the `docs/` folder or create an issue in the repository.
+For support and questions, please create an issue in the repository.
